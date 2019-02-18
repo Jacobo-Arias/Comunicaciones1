@@ -1,10 +1,10 @@
 import numpy as np
 
 
-def load_quantization_table(component):
+def cargar_tabla_cuantificacion(componente):
     # Quantization Table for: Photoshop - (Save For Web 080)
     # (http://www.impulseadventure.com/photo/jpeg-quantization.html)
-    if component == 'lum':
+    if componente == 'lum':
         q = np.array([[2, 2, 2, 2, 3, 4, 5, 6],
                       [2, 2, 2, 2, 3, 4, 5, 6],
                       [2, 2, 2, 2, 4, 5, 7, 9],
@@ -13,7 +13,7 @@ def load_quantization_table(component):
                       [4, 4, 5, 7, 10, 12, 12, 12],
                       [5, 5, 7, 9, 12, 12, 12, 12],
                       [6, 6, 9, 12, 12, 12, 12, 12]])
-    elif component == 'chrom':
+    elif componente == 'chrom':
         q = np.array([[3, 3, 5, 9, 13, 15, 15, 15],
                       [3, 4, 6, 11, 14, 12, 12, 12],
                       [5, 6, 9, 14, 12, 12, 12, 12],
@@ -24,8 +24,8 @@ def load_quantization_table(component):
                       [15, 12, 12, 12, 12, 12, 12, 12]])
     else:
         raise ValueError((
-            "component should be either 'lum' or 'chrom', "
-            "but '{comp}' was found").format(comp=component))
+            "componente debe ser del tipo 'lum' o 'chrom', "
+            "poro fue encontrado tipo '{comp}'").format(comp=componente))
 
     return q
 

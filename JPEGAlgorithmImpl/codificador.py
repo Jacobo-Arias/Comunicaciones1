@@ -7,13 +7,13 @@ from scipy import fftpack
 from PIL import Image
 from huffman import HuffmanTree
 
-def quantize(block, component):
-    q = load_quantization_table(component)
-    return (block / q).round().astype(np.int32)
+def quantize(bloque, componente):
+    q = cargar_tabla_cuantificacion(componente)
+    return (bloque / q).round().astype(np.int32)
 
 
-def block_to_zigzag(block):
-    return np.array([block[point] for point in zigzag_points(*block.shape)])
+def block_to_zigzag(bloque):
+    return np.array([bloque[punto] for punto in zigzag_points(*bloque.shape)])
 
 
 def dct_2d(image):
@@ -27,10 +27,8 @@ def run_length_encode(arr):
         if elem != 0:
             last_nonzero = i
 
-    # each symbol is a (RUNLENGTH, SIZE) tuple
     symbols = []
 
-    # values are binary representations of array elements using SIZE bits
     values = []
 
     run_length = 0
@@ -157,10 +155,10 @@ def main():
             flatten(run_length_encode(ac[i, :, j])[0]
                     for i in range(blocks_count) for j in [1, 2]))
 
-    tables = {'dc_y': H_DC_Y.value_to_bitstring_table(),
-              'ac_y': H_AC_Y.value_to_bitstring_table(),
-              'dc_c': H_DC_C.value_to_bitstring_table(),
-              'ac_c': H_AC_C.value_to_bitstring_table()}
+    tables = {'dc_y': H_DC_Y.valor_to_bitstring_table(),
+              'ac_y': H_AC_Y.valor_to_bitstring_table(),
+              'dc_c': H_DC_C.valor_to_bitstring_table(),
+              'ac_c': H_AC_C.valor_to_bitstring_table()}
 
     write_to_file(output_file, dc, ac, blocks_count, tables)
 
